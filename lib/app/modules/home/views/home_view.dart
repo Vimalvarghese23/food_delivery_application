@@ -13,20 +13,7 @@ class HomeView extends GetResponsiveView<HomeController> {
         title: const Text('HomeView'),
         centerTitle: true,
       ),
-      body: Center(
-        child: ResponsiveApp(),
-      ),
+      body: Center(),
     );
   }
-}
-
-class ResponsiveApp extends GetResponsiveView<HomeController> {
-  ResponsiveApp()
-      : super(
-          settings: ResponsiveScreenSettings(
-            desktopChangePoint: 1500,
-            tabletChangePoint: 1000,
-            watchChangePoint: 300,
-          ),
-        );
 }

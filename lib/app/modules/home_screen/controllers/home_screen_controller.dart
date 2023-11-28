@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_application/app/network/class%20model/food_response.dart';
+import 'package:food_delivery_application/app/network/repo/food_repo.dart';
 import 'package:get/get.dart';
 
 class HomeScreenController extends GetxController {
   //TODO: Implement HomeScreenController
 
   final count = 0.obs;
+  late Future<FoodRes?> foodData;
 
   @override
   void onInit() {
@@ -21,7 +24,11 @@ class HomeScreenController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  Future<FoodRes?> fetchAllData() async {
+    final FoodRepo foodRepo = FoodRepo();
+    final response = await foodRepo.Foodres();
+    return response;
+  }
 }
 
 class LetterAvatar extends StatelessWidget {

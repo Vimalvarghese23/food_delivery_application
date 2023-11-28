@@ -84,6 +84,7 @@ class LoginPageView extends GetView<LoginPageController> {
                     height: 45,
                     width: 319,
                     child: TextField(
+                      controller: controller.emailController,
                       decoration: InputDecoration(
                           fillColor: Color(0xFFF2F2F2),
                           labelText: "User name/Email",
@@ -115,6 +116,7 @@ class LoginPageView extends GetView<LoginPageController> {
                     height: 45,
                     width: 319,
                     child: TextField(
+                      controller: controller.passwordController,
                       decoration: InputDecoration(
                           fillColor: Color(0xFFF2F2F2),
                           labelText: "Enter your Password",
@@ -156,7 +158,7 @@ class LoginPageView extends GetView<LoginPageController> {
                         backgroundColor: Color.fromRGBO(0, 55, 166, 1),
                         foregroundColor: Colors.white),
                     onPressed: () {
-                      Get.toNamed('/home-screen');
+                      controller.onLoginClicked();
                     },
                     child: Row(
                       children: [

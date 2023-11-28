@@ -90,6 +90,7 @@ class SignUpPageView extends GetView<SignUpPageController> {
                       height: 45,
                       width: 319,
                       child: TextField(
+                        controller: controller.nameController,
                         decoration: InputDecoration(
                             fillColor: Color(0xFFF2F2F2),
                             labelText: "Enter your User name",
@@ -120,6 +121,7 @@ class SignUpPageView extends GetView<SignUpPageController> {
                       height: 45,
                       width: 319,
                       child: TextField(
+                        controller: controller.emailController,
                         decoration: InputDecoration(
                             fillColor: Color(0xFFF2F2F2),
                             labelText: "Enter Email address",
@@ -150,6 +152,7 @@ class SignUpPageView extends GetView<SignUpPageController> {
                       height: 45,
                       width: 319,
                       child: TextField(
+                        controller: controller.passwordController,
                         decoration: InputDecoration(
                             fillColor: Color(0xFFF2F2F2),
                             labelText: "Enter your password",
@@ -219,11 +222,10 @@ class SignUpPageView extends GetView<SignUpPageController> {
                             foregroundColor: Colors.white),
                         onPressed: () {
                           if (controller.isChecked.value == true) {
-                            () {};
+                            controller.onSignupClicked();
                           } else {
                             null;
                           }
-                          Get.offAllNamed('/login-page');
                         },
                         child: Row(
                           children: [
