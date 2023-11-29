@@ -29,10 +29,10 @@ class FoodRepo {
         return Foodres;
       }
 
-      final Foodres = FoodRes(error: "Unexpected Error");
+      final Foodres = FoodRes(error: "Unknown Error");
       return Foodres;
     }
-    final Foodres = FoodRes(error: "Unexpected Error fun");
+    final Foodres = FoodRes(error: "Unknown Error fun");
     return Foodres;
   }
 }

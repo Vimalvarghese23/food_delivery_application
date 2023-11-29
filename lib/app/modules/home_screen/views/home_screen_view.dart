@@ -221,34 +221,46 @@ class HomeScreenView extends GetView<HomeScreenController> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  NearYouContainer(
-                      'images/san.png',
-                      'Sandwich Tantuni',
-                      'NK Tantuni, Kadıköy',
-                      '4.8',
-                      '(233 ratings)',
-                      Color(0xFFFFC107),
-                      'Free delivery', () {
-                    print('container 1 tapped');
-                  }),
-                  NearYouContainer(
-                      'images/piz.jpeg',
-                      'Pizza with salmon',
-                      'Dominos Pizza, Sarıgazi',
-                      '4.3',
-                      '(233 ratings)',
-                      Colors.white,
-                      '', () {
-                    print('container 2 tapped');
-                  }),
-                  NearYouContainer('images/burg.jpg', 'Burgers', 'Burger king',
-                      '4.1', '(321 ratings)', Colors.white, '', () {
-                    print('container 3 tapped');
-                  }),
-                  NearYouContainer('images/kfc.jpg', 'Kfc grilled chicken',
-                      'Kfc', '4.0', '(358 ratings)', Colors.white, '', () {
-                    print('container 4 tapped');
-                  }),
+                  FutureBuilder(
+                    future: controller.fetchAllData(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else if (!snapshot.hasData ||
+                          snapshot.data?.data == null) {
+                        return Text('No data available');
+                      } else {
+                        final getAllData = snapshot.data;
+                        if (getAllData != null && getAllData.data != null) {
+                          final data = getAllData.data!;
+                          return Container(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: data.map((item) {
+                                  return NearYouContainer(
+                                    item.image.toString(),
+                                    item.title.toString(),
+                                    item.location.toString(),
+                                    item.star.toString(),
+                                    '(${item.star} ratings)',
+                                    Colors.amber,
+                                    item.category ?? 'free delivery',
+                                    () {
+                                      print('Container tapped for');
+                                    },
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          );
+                        }
+                      }
+                      return Text("Error");
+                    },
+                  ),
                 ],
               ),
             ),

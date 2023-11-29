@@ -26,10 +26,12 @@ class DioClient {
     if (headers != null) {
       _dio.options.headers.addAll(headers);
     }
+
     String? _token = G.Get.find<UserSignupRes>().token;
     print("get token$_token");
     _dio.options.headers
-        .addAll({"Authorization": "Bearer${_token ?? "No token"}"});
+        .addAll({"Authorization": "Bearer ${_token ?? "No Token"}"});
+
     try {
       switch (endpoints.type()) {
         case ReqType.GET:

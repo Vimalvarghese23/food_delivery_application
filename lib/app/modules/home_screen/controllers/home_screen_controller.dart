@@ -180,7 +180,7 @@ Widget NearYouContainer(
                   top: 0,
                   right: 0,
                   bottom: 0,
-                  child: Image.asset(
+                  child: Image.network(
                     imagePath,
                     fit: BoxFit.cover,
                   ),
