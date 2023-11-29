@@ -39,6 +39,7 @@ class LoginPageController extends GetxController {
     );
     if (response != null && response.token != null && response.error == null) {
       Get.find<UserSignupRes>().token = response.token;
+      Get.find<UserSignupRes>().name = response.name;
       Get.toNamed(Routes.HOME_SCREEN);
     } else {
       Get.showSnackbar(GetSnackBar(

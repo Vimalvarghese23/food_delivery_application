@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_application/app/network/class%20model/signup_response.dart';
 
 import 'package:get/get.dart';
 
 import '../controllers/home_screen_controller.dart';
 
 class HomeScreenView extends GetView<HomeScreenController> {
-  const HomeScreenView({Key? key}) : super(key: key);
+  late String _name;
+  HomeScreenView({Key? key}) : super(key: key) {
+    _name = Get.find<UserSignupRes>().name ?? "";
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +25,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 14),
                     child: Text(
-                      'Hello Vimal',
+                      'Hai $_name',
                       style: TextStyle(
                         color: Color(0xFF0A1F44),
                         fontSize: 24,
@@ -33,7 +37,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                   ),
                 ),
                 LetterAvatar(
-                  text: 'V',
+                  text: _name.isNotEmpty ? _name[0] : '',
                   size: 40,
                   backgroundColor: Colors.white,
                   textColor: Colors.black,

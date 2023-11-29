@@ -49,7 +49,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.HOME_SCREEN,
-      page: () => const HomeScreenView(),
+      page: () => HomeScreenView(),
       binding: HomeScreenBinding(),
     ),
   ];
